@@ -1,0 +1,15 @@
+Flask>=2.2.2
+Werkzeug>=2.2.2
+
+# Check if there is Prometheus monitoring
+prometheus_client>=0.14.1
+requests>=2.25.1
+
+# Check if there is RabbitMQ link
+
+# Check if there is an existing link from a relational DB
+
+# Check if there is MongoDB link
+
+# Check if there is redis link
+redis>=4.0.0

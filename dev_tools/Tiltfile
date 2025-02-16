@@ -1,0 +1,28 @@
+# Define variables for Kubernetes context and Docker WORKDIR
+k8s_context = 'gke_stacktic-423213_us-central1-c_cluster-1'
+app_folder = '/app'
+
+# Allow operations in the specified Kubernetes context
+load('ext://restart_process', 'docker_build_with_restart')
+
+allow_k8s_contexts(k8s_context)
+
+# Use the specific YAML configuration for the deployment
+k8s_yaml('../../k8s/deploy/base/python/python.yaml')
+
+# Define the live update for syncing all code changes
+docker_build_with_restart(
+    'index.docker.io/tomk235/python:0.0.1-SNAPSHOT',
+    context='../../python',
+    dockerfile='../../python/Dockerfile',
+    live_update=[
+        sync('../../python/src', app_folder + '/src'),
+        sync('../../python/app.py', app_folder + '/app.py'),
+        sync('../../python/requirements.txt', app_folder + '/requirements.txt'),
+        run('pip install -r ' + app_folder + '/requirements.txt', trigger=['requirements.txt'])
+    ],
+    entrypoint='python ' + app_folder + '/app.py'
+)
+
+# Optionally forward port 8080
+k8s_resource('python', port_forwards=8080)

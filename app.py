@@ -106,7 +106,7 @@ def greeting2():
     env_vars = {
         "DB_HOST": os.getenv("DB_HOST", "Not Set"),
         "APP_MODE": os.getenv("APP_MODE", "Not Set"),
-        "SECRET_KEY": os.getenv("SECRET_KEY", "Not Set")
+        "SECRET_KEY": os.getenv("SECRET_KEY", "Not Set"),
         "ALLOWED_HOSTS": os.getenv("ALLOWED_HOSTS", "Not Set")
     }
 

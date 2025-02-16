@@ -101,6 +101,25 @@ def greeting():
     return jsonify({"message": "Hello, welcome to the service!"}), 200
 
 # ... (other route definitions) ...
+@app.route('/greeting2')
+def greeting2():
+    env_vars = {
+        "DB_HOST": os.getenv("DB_HOST", "Not Set"),
+        "APP_MODE": os.getenv("APP_MODE", "Not Set"),
+        "SECRET_KEY": os.getenv("SECRET_KEY", "Not Set")
+        "ALLOWED_HOSTS": os.getenv("ALLOWED_HOSTS", "Not Set")
+    }
+
+    pod_name = os.getenv("HOSTNAME", "Unknown Pod")
+
+    print(request.headers)
+
+    return jsonify({
+        "message": "Hello, welcome to the service!",
+        "pod_name": pod_name,
+        "environment_variables": env_vars  # Limited variables
+    }), 200
+
 
 # Run the application
 if __name__ == "__main__":

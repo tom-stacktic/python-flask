@@ -107,9 +107,16 @@ def greeting2():
         "DB_HOST": os.getenv("DB_HOST", "Not Set"),
         "APP_MODE": os.getenv("APP_MODE", "Not Set"),
         "SECRET_KEY": os.getenv("SECRET_KEY", "Not Set"),
-        "ALLOWED_HOSTS": os.getenv("ALLOWED_HOSTS", "Not Set")
+        "ALLOWED_HOSTS": os.getenv("ALLOWED_HOSTS", "Not Set"),
+        "POSTGRESS_HOST": os.getenv("POSTGRESS_HOST", "Not Set"),
+        "POSTGRESS_PORT": os.getenv("POSTGRESS_PORT", "Not Set"),
+        "POSTGRESS_DATABASE_database": os.getenv("POSTGRESS_DATABASE_database", "Not Set"),
+        "POSTGRESS_USERNAME_database": os.getenv("POSTGRESS_USERNAME_database", "Not Set"),
+        "POSTGRESS_PASSWORD_database": os.getenv("POSTGRESS_PASSWORD_database", "Not Set")
     }
 
+
+    
     pod_name = os.getenv("HOSTNAME", "Unknown Pod")
 
     print(request.headers)
